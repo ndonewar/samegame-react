@@ -1,3 +1,129 @@
-.App {
-  text-align: center;
+* {
+  box-sizing: border-box;
 }
+
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a:link, a:visited, a:hover {
+  color: #00e;
+}
+
+.container {
+  margin: 0 auto;
+  width: auto;
+}
+.container {
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+  max-width: 830px;
+}
+.nav {
+  background-color: #00897b;
+  color: #fff;
+  padding: 10px 0;
+}
+.nav-brand {
+  font-size: 1.4rem;
+}
+.board {
+  position: relative;
+  margin-top: 20px;
+}
+.scores {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 20px;
+}
+.themes {
+  text-align: center;
+  font-size: .85rem;
+}
+.change-theme {
+  padding: 10px;
+}
+.mark {
+  opacity: 0.5
+}
+
+.tile {
+  border: 0;
+  height: 40px;
+  position: absolute;
+  outline: none;
+  width: 40px;
+}
+.tile:link, .tile:visited, .tile:hover {
+  color: #000;
+  text-decoration: none;
+}
+.tile-a {
+  background-color: #0c89dc;
+}
+.tile-b {
+  background-color: #dd514c;
+}
+.tile-c {
+  background-color: #9c27b0;
+}
+.tile-d {
+  background-color: #feeb3b;
+}
+.tile-e {
+  background-color: #5eb95e;
+}
+
+
+
+/* Classic style */
+.classic .tile {
+  border: 2px inset #808080;
+  display: flex;
+  align-items: center;
+  font-family: serif;
+  font-size: 2rem;
+  justify-content: center;
+}
+.classic .tile-a {
+  background-color: #00f;
+}
+.classic .tile-a::after {
+  content: 'A';
+}
+.classic .tile-b {
+  background-color: #f00;
+}
+.classic .tile-b::after {
+  content: 'B';
+}
+.classic .tile-c {
+  background-color: #f0f;
+}
+.classic .tile-c::after {
+  content: 'C';
+}
+.classic .tile-d {
+  background-color: #ff0;
+}
+.classic .tile-d::after {
+  content: 'D';
+}
+.classic .tile-e {
+  background-color: #0ff;
+}
+.classic .tile-e::after {
+  content: 'E';
+}
+
+

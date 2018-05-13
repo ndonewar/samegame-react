@@ -1,17 +1,13 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
+import Header from './components/Header/Header';
+import Game from './components/Game/Game';
 
-class App extends Component {
-  render() {
-    return (
-      <div className="App">
-        <header>
-          <h1>Welcome</h1>
-        </header>
-        <p>Hello World</p>
-      </div>
-    );
-  }
-}
+const App = () => (
+  <div>
+    <Header />
+    <Game />
+  </div>
+);
 
 export default App;
