@@ -38,6 +38,7 @@ class Board extends React.Component {
           <Tile
             click={this.tileClickHandler}
             id={tile.id}
+            key={tile.id}
             left={tile.left}
             top={tile.top}
             type={tile.type}
