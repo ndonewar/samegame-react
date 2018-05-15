@@ -2,12 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Tile = props => {
+  const className = `tile ${props.type}`;
+
   const style = {
     top: props.top,
     left: props.left,
   };
-
-  const className = `tile ${props.type}`;
 
   return (
     <button
