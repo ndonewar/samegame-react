@@ -1,38 +1,52 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
-import { clickTile } from '../../store/actions';
 import Tile from '../Tile/Tile';
+import { generateTiles, chooseTile } from '../../util/tiles';
 
-const Board = props => {
-  const style = {
-    height: props.boardHeight,
-  };
+const numRows = 10;
+const numCols = 20;
+const tileSize = 40;
 
-  return (
-    <div id="board" className="board" style={style}>
-      {props.tiles.map(tile => (
-        <Tile
-          click={() => props.clickTile(tile.id)}
-          id={tile.id}
-          key={tile.id}
-          left={tile.left}
-          top={tile.top}
-          type={tile.type}
-        />
-      ))}
-    </div>
-  );
-};
+class Board extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      markedPoints: 0,
+      totalPoints: 0,
+      tiles: generateTiles(numCols, numRows),
+    };
+  }
 
-Board.propTypes = {
-  boardHeight: PropTypes.number.isRequired,
-  tiles: PropTypes.arrayOf(PropTypes.object).isRequired,
-};
+  handleTileClick(tileId) {
+    const results = chooseTile(this.state.tiles, tileId);
 
-const mapStateToProps = state => ({
-  boardHeight: state.boardHeight,
-  tiles: state.tiles,
-});
+    this.setState({
+      markedPoints: results.markedPoints,
+      totalPoints: this.state.totalPoints + results.scoredPoints,
+      tiles: results.tiles,
+    });
+  }
 
-export default connect(mapStateToProps, { clickTile })(Board);
+  render() {
+    const style = {
+      height: numRows * tileSize,
+    };
+
+    return (
+      <div id="board" className="board" style={style}>
+        {this.state.tiles.map(tile => (
+          <Tile
+            click={() => this.handleTileClick(tile.id)}
+            key={tile.id}
+            col={tile.col}
+            marked={tile.marked}
+            row={tile.row}
+            size={tileSize}
+            type={tile.type}
+          />
+        ))}
+      </div>
+    );
+  }
+}
+
+export default Board;

@@ -19,15 +19,10 @@ a:link, a:visited, a:hover {
 
 .container {
   margin: 0 auto;
-  width: auto;
-}
-.container {
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
   max-width: 830px;
+  padding-left: 15px;
+  padding-right: 15px;
+  width: 100%;
 }
 .nav {
   background-color: #00897b;
@@ -63,6 +58,7 @@ a:link, a:visited, a:hover {
   position: absolute;
   outline: none;
   width: 40px;
+  transition: bottom 0.05s ease-in 0s;
 }
 .tile:link, .tile:visited, .tile:hover {
   color: #000;
@@ -83,8 +79,6 @@ a:link, a:visited, a:hover {
 .tile-e {
   background-color: #5eb95e;
 }
-
-
 
 /* Classic style */
 .classic .tile {

@@ -5,13 +5,11 @@ import ThemeLinks from '../ThemeLinks/ThemeLinks';
 
 const Game = () => (
   <section className="container">
-    <div id="game-container">
-      <Board />
+    <Board />
 
-      <Scores />
+    <Scores points={0} total={0} />
 
-      <ThemeLinks />
-    </div>
+    <ThemeLinks />
   </section>
 );
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 const Scores = props => (
@@ -18,9 +17,4 @@ Scores.propTypes = {
   total: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = state => ({
-  points: state.points,
-  total: state.total,
-});
-
-export default connect(mapStateToProps)(Scores);
+export default Scores;

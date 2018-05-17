@@ -2,28 +2,23 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Tile = props => {
-  const className = `tile ${props.type}`;
+  const markedClass = props.marked ? 'mark' : '';
+  const className = `tile ${props.type} ${markedClass}`;
 
   const style = {
-    top: props.top,
-    left: props.left,
+    bottom: props.row * props.size,
+    left: props.col * props.size,
   };
 
-  return (
-    <button
-      className={className}
-      id={props.id}
-      onClick={props.click}
-      style={style}
-    />
-  );
+  return <button className={className} onClick={props.click} style={style} />;
 };
 
 Tile.propTypes = {
   click: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  left: PropTypes.number.isRequired,
-  top: PropTypes.number.isRequired,
+  col: PropTypes.number.isRequired,
+  marked: PropTypes.bool.isRequired,
+  row: PropTypes.number.isRequired,
+  size: PropTypes.number.isRequired,
   type: PropTypes.string.isRequired,
 };
 
