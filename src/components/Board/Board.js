@@ -7,13 +7,16 @@ const Board = props => {
     height: props.boardHeight,
   };
 
+  const className = `board ${props.theme}`;
+
   return (
-    <div id="board" className="board" style={style}>
+    <div id="board" className={className} style={style}>
       {props.tiles.map(tile => (
         <Tile
-          click={() => props.tileClick(tile.id)}
-          key={tile.id}
+          click={props.tileClick}
           col={tile.col}
+          id={tile.id}
+          key={tile.id}
           marked={tile.marked}
           row={tile.row}
           size={props.tileSize}
@@ -26,6 +29,7 @@ const Board = props => {
 
 Board.propTypes = {
   boardHeight: PropTypes.number.isRequired,
+  theme: PropTypes.string.isRequired,
   tileClick: PropTypes.func.isRequired,
   tileSize: PropTypes.number.isRequired,
   tiles: PropTypes.arrayOf(PropTypes.object).isRequired,

@@ -7,14 +7,16 @@ body {
   margin: 0;
   padding: 0;
 }
-a {
-  text-decoration: none;
-}
-a:hover {
-  text-decoration: underline;
-}
-a:link, a:visited, a:hover {
+.link {
+  background: none !important;
+  border: none;
   color: #00e;
+  cursor: pointer;
+  font-size: inherit;
+  padding: 0;
+}
+.link:hover{
+  text-decoration: underline;
 }
 
 .container {
@@ -45,8 +47,8 @@ a:link, a:visited, a:hover {
   text-align: center;
   font-size: .85rem;
 }
-.change-theme {
-  padding: 10px;
+.theme-link {
+  padding: 0 15px;
 }
 .mark {
   opacity: 0.5

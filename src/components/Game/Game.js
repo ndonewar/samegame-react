@@ -13,21 +13,29 @@ class Game extends Component {
     super(props);
     this.state = {
       markedPoints: 0,
+      theme: 'modern',
       totalPoints: 0,
       tiles: generateTiles(numCols, numRows),
     };
-    this.handleTileClick = this.handleTileClick.bind(this);
   }
 
-  handleTileClick(tileId) {
+  handleTileClick = tileId => {
     const results = chooseTile(this.state.tiles, tileId);
 
     this.setState({
+      ...this.state,
       markedPoints: results.markedPoints,
       totalPoints: this.state.totalPoints + results.scoredPoints,
       tiles: results.tiles,
     });
-  }
+  };
+
+  handleThemeChange = theme => {
+    this.setState({
+      ...this.state,
+      theme,
+    });
+  };
 
   render() {
     const boardHeight = numRows * tileSize;
@@ -36,6 +44,7 @@ class Game extends Component {
       <section className="container">
         <Board
           boardHeight={boardHeight}
+          theme={this.state.theme}
           tileClick={this.handleTileClick}
           tileSize={tileSize}
           tiles={this.state.tiles}
@@ -46,7 +55,7 @@ class Game extends Component {
           total={this.state.totalPoints}
         />
 
-        <ThemeLinks />
+        <ThemeLinks linkClick={this.handleThemeChange} />
       </section>
     );
   }
