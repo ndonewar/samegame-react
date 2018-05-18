@@ -12,7 +12,7 @@ body {
   border: none;
   color: #00e;
   cursor: pointer;
-  font-size: inherit;
+  font-size: 0.8rem;
   padding: 0;
 }
 .link:hover{
@@ -24,6 +24,7 @@ body {
   max-width: 830px;
   padding-left: 15px;
   padding-right: 15px;
+  position: relative;
   width: 100%;
 }
 .nav {
@@ -49,6 +50,21 @@ body {
 }
 .theme-link {
   padding: 0 15px;
+}
+.final-score {
+  left: 50%;
+  position: absolute;
+  top: 10%;
+  transition: all 0.1s linear 0s;
+}
+.final-score-content {
+  background: #fff;
+  border: 1px solid #ccc;
+  box-shadow: 0 4px 20px 0 rgba(0, 0, 0, 0.1);
+  left: -50%;
+  padding: 40px 50px;
+  position: relative;
+  text-align: center;
 }
 .mark {
   opacity: 0.5

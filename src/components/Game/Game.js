@@ -2,38 +2,52 @@ import React, { Component } from 'react';
 import Board from '../Board/Board';
 import Scores from '../Scores/Scores';
 import ThemeLinks from '../ThemeLinks/ThemeLinks';
-import { generateTiles, chooseTile } from '../../util/tiles';
+import FinalScore from '../FinalScore/FinalScore';
+import { generateTiles, chooseTile, isGameOver } from '../../util/tiles';
 
 const numRows = 10;
 const numCols = 20;
 const tileSize = 40;
+const tiles = generateTiles(numCols, numRows);
+const initialState = {
+  gameOver: isGameOver(tiles),
+  markedPoints: 0,
+  theme: 'modern',
+  tiles,
+  totalPoints: 0,
+};
 
 class Game extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      markedPoints: 0,
-      theme: 'modern',
-      totalPoints: 0,
-      tiles: generateTiles(numCols, numRows),
-    };
+    this.state = initialState;
   }
 
   handleTileClick = tileId => {
-    const results = chooseTile(this.state.tiles, tileId);
+    if (!this.state.gameOver) {
+      const results = chooseTile(this.state.tiles, tileId);
 
-    this.setState({
-      ...this.state,
-      markedPoints: results.markedPoints,
-      totalPoints: this.state.totalPoints + results.scoredPoints,
-      tiles: results.tiles,
-    });
+      this.setState({
+        ...this.state,
+        gameOver: results.gameOver,
+        markedPoints: results.markedPoints,
+        totalPoints: this.state.totalPoints + results.scoredPoints,
+        tiles: results.tiles,
+      });
+    }
   };
 
   handleThemeChange = theme => {
     this.setState({
       ...this.state,
       theme,
+    });
+  };
+
+  handleNewGameClick = () => {
+    this.setState({
+      ...initialState,
+      tiles: generateTiles(numCols, numRows),
     });
   };
 
@@ -56,6 +70,12 @@ class Game extends Component {
         />
 
         <ThemeLinks linkClick={this.handleThemeChange} />
+
+        <FinalScore
+          newGameClick={this.handleNewGameClick}
+          score={this.state.totalPoints}
+          show={this.state.gameOver}
+        />
       </section>
     );
   }

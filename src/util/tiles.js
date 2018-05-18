@@ -125,6 +125,20 @@ const markAdjacentTiles = (prevTiles, tile) => {
   return tiles;
 };
 
+export const isGameOver = tiles =>
+  !tiles.some(tile => {
+    const top = getTopAdjacent(tiles, tile);
+    const right = getRightAdjacent(tiles, tile);
+    const bottom = getBottomAdjacent(tiles, tile);
+    const left = getLeftAdjacent(tiles, tile);
+    return (
+      (top && isTileSameType(tile, top)) ||
+      (right && isTileSameType(tile, right)) ||
+      (bottom && isTileSameType(tile, bottom)) ||
+      (left && isTileSameType(tile, left))
+    );
+  });
+
 export const chooseTile = (prevTiles, id) => {
   let tiles = [...prevTiles];
   let points = 0;
@@ -134,6 +148,7 @@ export const chooseTile = (prevTiles, id) => {
     tiles = compactColumnsDown(tiles);
     tiles = compactColumnsLeft(tiles);
     return {
+      gameOver: isGameOver(tiles),
       markedPoints: 0,
       scoredPoints: points,
       tiles,
@@ -145,6 +160,7 @@ export const chooseTile = (prevTiles, id) => {
     tiles = unmarkAllTiles(tiles);
   }
   return {
+    gameOver: false,
     markedPoints: calculatePoints(tiles),
     scoredPoints: 0,
     tiles,
