@@ -3,10 +3,7 @@ import PropTypes from 'prop-types';
 
 const FinalScore = props => {
   const style = {
-    // display: props.show ? 'block' : 'none',
-    // position: props.show ? 'absolute' : 'relative',
     opacity: props.show ? 1 : 0,
-    // top: props.show ? '10%' : '100%',
     zIndex: props.show ? 10 : -1,
   };
 
